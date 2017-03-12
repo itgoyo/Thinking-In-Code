@@ -12,6 +12,9 @@ win->command
 
 alt->option
 
+command+shift+.
+
+显示隐藏文件
 
 ctrl+command+f
 
