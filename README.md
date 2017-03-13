@@ -8,6 +8,12 @@
 
 ![](http://p1.bqimg.com/567571/e60b820273c78809.png)
 
+advanced-open-file
+
+command+alt+o
+
+打开资源文件
+
 win->command
 
 alt->option
@@ -130,3 +136,32 @@ public class StringUtils {
 
 }
 ```
+### Android 6.0运行时权限
+```java
+
+        // 1. 动态申请权限
+
+       if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PermissionChecker.PERMISSION_GRANTED){
+           ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_SDCARD);
+           return;
+       }
+
+       showDialog("正在玩命登录中...");
+
+       mLoginPresenter.login(username,pwd);
+   }
+
+   @Override
+   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+       super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+       if (requestCode==REQUEST_SDCARD){
+           if (grantResults[0]==PermissionChecker.PERMISSION_GRANTED){
+               //被授权了
+               login();
+           }else{
+               showToast("没有给予该应用权限，不让你用了");
+           }
+       }
+   }
+
+   ```
